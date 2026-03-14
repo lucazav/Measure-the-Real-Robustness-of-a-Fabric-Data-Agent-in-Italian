@@ -1,0 +1,186 @@
+
+CREATE TABLE [retail].[stores](
+	[store_id] [int] NOT NULL,
+	[store_name] [varchar](max) NOT NULL,
+	[rls_user_id] [varchar](max) NOT NULL,
+	[is_online] [bit] NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+/*
+store_id	store_name	rls_user_id	is_online
+1	Zava Retail Seattle	f47ac10b-58cc-4372-a567-0e02b2c3d479	0
+2	Zava Retail Bellevue	6ba7b810-9dad-11d1-80b4-00c04fd430c8	0
+3	Zava Retail Tacoma	a1b2c3d4-e5f6-7890-abcd-ef1234567890	0
+4	Zava Retail Spokane	d8e9f0a1-b2c3-4567-8901-234567890abc	0
+5	Zava Retail Everett	3b9ac9fa-cd5e-4b92-a7f2-b8c1d0e9f2a3	0
+6	Zava Retail Redmond	e7f8a9b0-c1d2-3e4f-5678-90abcdef1234	0
+7	Zava Retail Kirkland	9c8b7a65-4321-fed0-9876-543210fedcba	0
+8	Zava Retail Online	2f4e6d8c-1a3b-5c7e-9f0a-b2d4f6e8c0a2	1
+*/
+
+--===
+
+CREATE TABLE [retail].[products](
+	[product_id] [int] NOT NULL,
+	[sku] [varchar](max) NOT NULL,
+	[product_name] [varchar](max) NOT NULL,
+	[category_id] [int] NOT NULL,
+	[type_id] [int] NOT NULL,
+	[cost] [decimal](10, 2) NOT NULL,
+	[base_price] [decimal](10, 2) NOT NULL,
+	[gross_margin_percent] [decimal](5, 2) NULL,
+	[product_description] [varchar](max) NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+/*
+product_id	sku	product_name	category_id	type_id	cost	base_price	gross_margin_percent	product_description
+6	HTSD020001	Flathead Screwdriver Set	1	2	14.00	20.90	33.00	Professional flathead screwdrivers with precision-machined tips and ergonomic handles for various applications.
+20	HTFR000011	Wood Rasp Set	1	7	14.00	20.90	33.00	Coarse wood rasps for rapid material removal and shaping of wood surfaces.
+22	HTMT000013	Tape Measure 25-foot	1	8	14.00	20.90	33.00	Heavy-duty tape measure with standout blade and magnetic tip for one-person measuring.
+241	ELOTL005	Weather Resistant Outlet	6	51	14.00	20.90	33.00	Outdoor outlet with weather-resistant cover for exterior electrical installations.
+261	ELJB000015	Weatherproof Box	6	55	14.00	20.90	33.00	Outdoor electrical box with gasket seal for weather protection in exterior applications.
+292	PLPPF001	PVC Elbow Assortment	7	62	14.00	20.90	33.00	90-degree PVC elbows in various sizes for changing pipe direction.
+297	PLVA000001	Ball Valve 1/2-inch	7	63	14.00	20.90	33.00	Quarter-turn ball valve for water shut-off with full-port design.
+308	PLTLT002	Fill Valve Assembly	7	65	14.00	20.90	33.00	Complete fill valve assembly for toilet tank water refill control.
+315	PLDRN004	Plunger Set	7	66	14.00	20.90	33.00	Toilet and sink plunger set for basic drain clearing and blockage removal.
+320	PLPI000009	Fiberglass Pipe Insulation	7	67	14.00	20.90	33.00	High-temperature fiberglass insulation for hot water pipes and steam lines.
+347	GOFRT004	Tomato Plant Food	8	73	14.00	20.90	33.00	Specialized fertilizer formulated for tomatoes and other fruiting plants.
+352	GOMUL004	Straw Mulch Bale	8	74	14.00	20.90	33.00	Natural straw mulch bale for vegetable gardens and erosion control.
+358	GOSEE001	Vegetable Seed Starter Kit	8	76	14.00	20.90	33.00	Complete vegetable seed collection with growing instructions and tips.
+364	GOSOI002	Garden Soil Enriched	8	77	14.00	20.90	33.00	Nutrient-rich garden soil blend for planting beds and landscaping.
+390	SOSB000011	Clear Storage Bin 27-Quart	9	83	14.00	20.90	33.00	Transparent storage bin with secure lid for easy identification of contents.
+406	SOHH000027	Magnetic Tool Holder	9	86	14.00	20.90	33.00	Magnetic strip for holding metal tools on workshop walls and toolboxes.
+3	HTHM041300	Finishing Hammer 13oz	1	1	25.00	37.31	33.00	Lightweight finishing hammer with smooth face for trim work and delicate construction tasks.
+16	HTPL000007	Lineman's Pliers 9-inch	1	4	25.00	37.31	33.00	Heavy-duty lineman's pliers with cutting edges and insulated grips for electrical work.
+239	ELOTL003	USB Outlet with Charging	6	51	25.00	37.31	33.00	Combination outlet with USB ports for convenient device charging without adapters.
+245	ELSWT004	Motion Sensor Switch	6	52	25.00	37.31	33.00	Automatic switch with motion detection for hands-free lighting control.
+*/
+
+--===
+
+CREATE TABLE [retail].[product_types](
+	[type_id] [int] NOT NULL,
+	[category_id] [int] NOT NULL,
+	[type_name] [varchar](max) NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+/*
+type_id	category_id	type_name
+1	1	HAMMERS
+2	1	SCREWDRIVERS
+3	1	WRENCHES
+4	1	PLIERS
+5	1	HAND SAWS
+6	1	CHISELS
+7	1	FILES & RASPS
+8	1	MEASURING TOOLS
+9	1	ALLEN KEYS
+10	2	DRILLS
+11	2	CIRCULAR SAWS
+12	2	SANDERS
+13	2	JIGSAWS
+14	2	ANGLE GRINDERS
+15	2	RECIPROCATING SAWS
+16	2	ROUTERS
+17	2	IMPACT DRIVERS
+18	2	BELT SANDERS
+19	2	MITER SAWS
+20	3	INTERIOR PAINT
+*/
+
+--===
+
+CREATE TABLE [retail].[orders](
+	[order_id] [int] NOT NULL,
+	[customer_id] [int] NOT NULL,
+	[store_id] [int] NOT NULL,
+	[order_date] [date] NOT NULL
+) ON [PRIMARY]
+GO
+
+/*
+order_id	customer_id	store_id	order_date
+194	43	7	2022-08-27
+457	110	7	2023-02-20
+471	116	7	2026-06-06
+598	151	7	2022-04-25
+777	186	7	2020-06-12
+808	193	7	2025-09-04
+987	231	7	2024-03-09
+1245	302	7	2026-06-11
+1463	351	7	2023-10-11
+1464	351	7	2025-01-17
+1923	470	7	2026-02-14
+1924	470	7	2026-05-01
+1945	478	7	2026-10-11
+1957	481	7	2022-11-23
+2226	550	7	2020-05-01
+2239	552	7	2024-11-20
+2270	562	7	2023-09-30
+2271	562	7	2020-05-26
+2272	562	7	2025-08-20
+2273	562	7	2022-12-14
+*/
+
+--===
+
+CREATE TABLE [retail].[order_items](
+	[order_item_id] [int] NOT NULL,
+	[order_id] [int] NOT NULL,
+	[store_id] [int] NOT NULL,
+	[product_id] [int] NOT NULL,
+	[quantity] [int] NOT NULL,
+	[unit_price] [decimal](10, 2) NOT NULL,
+	[discount_percent] [int] NULL,
+	[discount_amount] [decimal](10, 2) NULL,
+	[total_amount] [decimal](10, 2) NOT NULL
+) ON [PRIMARY]
+GO
+
+/*
+order_item_id	order_id	store_id	product_id	quantity	unit_price	discount_percent	discount_amount	total_amount
+73615	35304	1	104	1	10.32	5	0.52	9.81
+286770	136803	1	106	1	10.32	5	0.52	9.80
+2461	1215	1	218	1	10.47	5	0.52	9.95
+418156	199213	1	151	1	10.33	5	0.52	9.81
+84790	40651	1	281	1	10.45	5	0.52	9.92
+261775	124956	1	281	1	10.44	5	0.52	9.91
+34131	16352	1	331	1	10.42	5	0.52	9.90
+359885	171584	1	217	1	10.31	5	0.52	9.79
+275917	131656	1	182	1	10.45	5	0.52	9.93
+377763	180006	1	365	1	10.47	5	0.52	9.94
+246168	117583	1	260	1	10.43	5	0.52	9.90
+6799	3270	1	130	1	20.33	5	1.02	19.31
+176900	84527	1	390	1	20.40	5	1.02	19.38
+288491	137649	1	208	1	20.38	5	1.02	19.36
+23869	11448	1	351	1	20.49	5	1.02	19.47
+25891	12434	1	347	1	20.45	5	1.02	19.42
+220789	105419	1	360	1	20.45	5	1.02	19.42
+30802	14778	1	31	1	20.42	5	1.02	19.40
+372824	177686	1	241	1	20.31	5	1.02	19.29
+19391	9362	1	178	1	20.39	5	1.02	19.37
+*/
+
+--===
+
+CREATE TABLE [retail].[categories](
+	[category_id] [int] NOT NULL,
+	[category_name] [varchar](max) NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+/*
+category_id	category_name
+1	HAND TOOLS
+2	POWER TOOLS
+3	PAINT & FINISHES
+4	HARDWARE
+5	LUMBER & BUILDING MATERIALS
+6	ELECTRICAL
+7	PLUMBING
+8	GARDEN & OUTDOOR
+9	STORAGE & ORGANIZATION
+*/
