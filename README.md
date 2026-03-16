@@ -2,7 +2,7 @@
 
 This repository contains the benchmark assets described in the article:
 
-**"Building a Spider2-Inspired Benchmark to Measure the Real Robustness of a Fabric Data Agent in Italian"**
+[**"Building a Spider2-Inspired Benchmark to Measure the Real Robustness of a Fabric Data Agent in Italian"**](https://medium.com/data-science-collective/building-a-spider2-inspired-benchmark-to-measure-the-real-robustness-of-a-fabric-data-agent-in-ita-abe6f0781b34)
 
 The goal of this project is not to showcase another "working demo", but to prepare a more rigorous evaluation setup for a **Microsoft Fabric Data Agent** operating on an Italian business scenario.
 
