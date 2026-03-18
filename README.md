@@ -21,7 +21,7 @@ This first article focuses on:
 - producing the final 72-question benchmark
 
 ### 2. Benchmark execution and evaluation on Fabric
-[We Built the Benchmark. Now Let's Evaluate the Fabric Data Agent for Real](ADD_ARTICLE_LINK_HERE)
+[We Built the Benchmark. Now Let's Evaluate the Fabric Data Agent for Real](https://medium.com/data-science-collective/we-built-the-benchmark-now-lets-evaluate-the-fabric-data-agent-for-real-a8ffef236693)
 
 This second article focuses on:
 - completing the `expected_answer` column
@@ -54,9 +54,6 @@ This second article focuses on:
 
 - [`zava_agent_evaluation.ipynb`](./zava_agent_evaluation.ipynb)  
   Fabric notebook used to load the benchmark from OneLake, run `evaluate_data_agent`, inspect evaluation summaries and details, and test stricter custom critic prompts.
-
-- [`audit_table.py`](./audit_table.py)  
-  Helper script used to rebuild an audit table by merging evaluation exports with benchmark metadata, especially useful when `expected_answer` is missing from exported evaluation details.
 
 ### SDK source-code inspection
 
